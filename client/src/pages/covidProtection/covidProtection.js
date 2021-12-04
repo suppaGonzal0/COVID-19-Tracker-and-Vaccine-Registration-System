@@ -1,4 +1,4 @@
-import "./covidProtection.css"
+import "./CovidProtection.css"
 
 import React from 'react'
 

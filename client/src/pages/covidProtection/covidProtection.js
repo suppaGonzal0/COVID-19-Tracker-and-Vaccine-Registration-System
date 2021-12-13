@@ -1,8 +1,8 @@
-import "./CovidProtection.css"
+import "./covidProtection.css"
 
 import React from 'react'
 
-function CovidProtection() {
+function covidProtection() {
     return (
         <div className="protecc">
             <header className="proteccBanner">
@@ -183,4 +183,4 @@ function CovidProtection() {
     )
 }
 
-export default CovidProtection
+export default covidProtection

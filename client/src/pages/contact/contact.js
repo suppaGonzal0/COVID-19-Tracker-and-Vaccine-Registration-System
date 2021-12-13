@@ -1,5 +1,5 @@
 import emailjs from 'emailjs-com';
-import './Contact.css'
+import './contact.css'
 
 export default function Contact(){
 
@@ -34,17 +34,17 @@ export default function Contact(){
 
         <div className="field">
           <label for="name">Name</label>
-          <input type="text" name="name" className="name"/>
+          <input type="text" className="name"/>
         </div>
 
         <div className="field">
           <label for="email">E-mail</label>
-          <input type="text" name="email" className="email"/>
+          <input type="text" className="email"/>
         </div>
 
         <div className="field">
           <label for="msg">Message</label>
-          <textarea name="msg" className="msg"/>
+          <textarea className="msg"/>
         </div>
 
         <input type="submit" id="button" value="Send Email"/>

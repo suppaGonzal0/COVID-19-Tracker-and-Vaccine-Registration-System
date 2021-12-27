@@ -13,7 +13,7 @@ app.use(
   })
 );
 app.use(express.urlencoded({
-  extended: true
+  extended: false
 }));
 
 const db = mysql.createPool({
@@ -40,6 +40,58 @@ app.post("/register", (req, res) => {
       if (err) {
         res.send(err);
       } else {
+        res.send(result);
+      }
+    }
+  );
+});
+
+app.post("/login", (req, res) => {
+
+  const {NID, phone} = req.body;
+
+  db.query(
+    "select * from citizen where NID = ? and phone =?", [NID, phone],
+    (err, result) => {
+      if (err) {
+        res.send(err);
+      } else if(result.length>0){
+        res.send(result);
+      }else {
+        res.send({message : "Wrong credentials!"});
+      }
+    }
+  );
+});
+
+app.post("/getData", (req, res) => {
+
+  const {NID, phone} = req.body;
+
+  db.query(
+    "select * from register where NID = ? and phone =?", [NID, phone],
+    (err, result) => {
+      if (err) {
+        res.send(err);
+      } else if(result.length>0){
+        res.send(result);
+      }else {
+        res.send({message : "Wrong credentials!"});
+      }
+    }
+  );
+});
+
+app.post("/checkReg", (req, res) => {
+
+  const {NID, phone} = req.body;
+
+  db.query(
+    "select exists(select * from register where NID = ? and phone =?)", [NID, phone],
+    (err, result) => {
+      if (err) {
+        res.send(err);
+      } else{
         res.send(result);
       }
     }

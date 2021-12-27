@@ -24,7 +24,12 @@ export default function Register() {
             center : center,
             address : address
         }).then((response) => {
-                console.log(response.data);
+                if(response.data.message){
+                    console.log(response.data.message);
+                }
+                else{
+                    console.log(response.data);
+                }
         });
         e.target.reset();
     };

@@ -4,14 +4,17 @@ import { Button } from '@nextui-org/react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {faArrowRight} from '@fortawesome/free-solid-svg-icons'
 import { useEffect, useState } from 'react';
+import Logout from '../logOut/Logout';
 
 
-function Navbar( { logout }) {
+function Navbar( { loginStat, setLoginStat }) {
+
+    const [loginText, setloginText] = useState("Log in/register")
 
     return (
         <nav className="navContainer">
             <div className="logo">
-                <h1>VaxTrak Inc.</h1>
+                <h2>VaxTrak Inc.</h2>
             </div>
             <div className="navLinksContainer">
                 <div className="navLinks">
@@ -22,11 +25,14 @@ function Navbar( { logout }) {
                     <Link to="/contact" className='navLink'><h3>Contact</h3></Link>
                 </div>              
             </div>
-            <div className="registerArea">
-                <Link to="/register" className="registerContainer">
-                        <h3>{logout === "yes" ? "Logout" : "Log in / register" } </h3>
-                        <FontAwesomeIcon className='arrowIcon' icon={faArrowRight} />            
-                </Link>
+            <div className="loginArea">
+                { loginStat ? <Logout setLoginStat={setLoginStat}/> : 
+                    <Link to="/login" className="loginContainer">
+                    <h3> Log in / register </h3>
+                    <FontAwesomeIcon className='arrowIcon' icon={faArrowRight} />            
+                    </Link>
+                }
+                
             </div>
         </nav>
     )

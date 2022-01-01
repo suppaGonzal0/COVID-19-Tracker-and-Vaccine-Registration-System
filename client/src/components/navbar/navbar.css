@@ -36,7 +36,7 @@
 .navLink:visited{
     color: black;
 }
-.registerArea{
+.loginArea{
     display: flex;
     align-items: center;
     justify-content: center;
@@ -44,21 +44,21 @@
     background-color: #3B4553;
 }
 
-.registerContainer{
+.loginContainer{
     display: flex;
     justify-content: space-evenly;
     align-items: center;
-    width: 80%;
+    width: 85%;
     height: 100%;
     transition: all 0.3s ease;
     text-decoration: none;
 }
 
-.registerContainer:visited{
+.loginContainer:visited{
     color: white;
 }
 
-.registerContainer:hover {
-    width: 90%;
+.loginContainer:hover {
+    width: 95%;
 }
 

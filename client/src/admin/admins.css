@@ -1,0 +1,8 @@
+.appList{
+    display: flex;
+    flex-direction: row;
+}
+
+.item{
+    padding: 8px;
+}

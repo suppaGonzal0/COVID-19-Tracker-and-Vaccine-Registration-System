@@ -29,6 +29,7 @@ export default function ApplicantReq() {
 
     return (
         <div>
+            <h1>Applicant Request Page</h1>
            {applicants.filter(applicant => applicant.doseOneDate===null).map( (applicant, idx) => (
                 <ul key={idx} className="appList">
                 <li className="item">{applicant.NID}</li>

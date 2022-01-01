@@ -12,28 +12,31 @@ export default function Login() {
     const login = (e) => {
         e.preventDefault();
 
-        let recaptcha = new firebase.auth.RecaptchaVerifier('recaptcha');
-        let number = phone;
-        firebase.auth().signInWithPhoneNumber(number, recaptcha).then(function (ex) {
-            let code = prompt('enter the otp', '');
-            if (code == null) return;
-            ex.confirm(code).then(function (result) {
-                Axios.post("http://localhost:3001/login", {
-                    NID, phone
-                }).then((response) => {
-                    if (response.data.message) {
-                        setLoginErr(response.data.message);
-                    } else {
+        Axios.post("http://localhost:3001/login", {
+            NID, phone
+        }).then((response) => {
+            if (response.data.message) {
+                setLoginErr(response.data.message);
+                console.log(response.data.message)
+            } else {
+                let recaptcha = new firebase.auth.RecaptchaVerifier('recaptcha');
+                let number = phone;
+                firebase.auth().signInWithPhoneNumber(number, recaptcha).then(function (ex) {
+                    let code = prompt('enter the otp', '');
+                    if (code == null) return;
+                    ex.confirm(code).then(function (result) {
                         localStorage.setItem("loginStat", "yes");
                         localStorage.setItem("loginCred", JSON.stringify(response.data[0]));
                         console.log(response.data[0]);
-                        window.location.pathname="/status"
-                    }
-                });
-            }).catch((error)=>{
-                console.log(error);
-            }) 
-        })
+                        window.location.pathname = "/status"
+                    }).catch((error) => {
+                        console.log(error);
+                    })
+                })
+            }
+        });
+
+
     };
     return (
         <>
@@ -60,4 +63,3 @@ export default function Login() {
         </>
     )
 }
-

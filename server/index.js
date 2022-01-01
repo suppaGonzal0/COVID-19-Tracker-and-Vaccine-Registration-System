@@ -8,7 +8,7 @@ app.use(express.json());
 app.use(
   cors({
     origin: ["http://localhost:3000"],
-    methods: ["GET", "POST"],
+    methods: ["GET", "POST", "PUT"],
     credentials: true,
   })
 );
@@ -76,22 +76,72 @@ app.post("/getData", (req, res) => {
       } else if(result.length>0){
         res.send(result);
       }else {
-        res.send({message : "Wrong credentials!"});
+        res.send({message : "Not Registered"});
       }
     }
   );
 });
 
-app.post("/checkReg", (req, res) => {
+app.get("/register", (req, res) => {
+  db.query("SELECT * FROM register", (err, result) => {
+    if (err) {
+      res.send(err);
+    } else {
+      res.send(result);
+    }
+  });
+});
 
-  const {NID, phone} = req.body;
+app.get("/registerAll", (req, res) => {
+  db.query("SELECT * FROM register where doseOneDate is not null and doseTwoDate is not null", (err, result) => {
+    if (err) {
+      res.send(err);
+    } else {
+      res.send(result);
+    }
+  });
+});
 
+app.get("/registerNone", (req, res) => {
+  db.query("SELECT * FROM register where doseOne is null and doseTwo is null and doseOneDate is not null and doseTwoDate is not null", (err, result) => {
+    if (err) {
+      res.send(err);
+    } else {
+      res.send(result);
+    }
+  });
+});
+
+app.get("/registerDoseOne", (req, res) => {
+  db.query("SELECT * FROM register where doseOne=true and doseTwo is null and doseOneDate is not null and doseTwoDate is not null", (err, result) => {
+    if (err) {
+      res.send(err);
+    } else {
+      res.send(result);
+    }
+  });
+});
+
+app.get("/registerComplete", (req, res) => {
+  db.query("SELECT * FROM register where doseOne=true and doseTwo=true and doseOneDate is not null and doseTwoDate is not null", (err, result) => {
+    if (err) {
+      res.send(err);
+    } else {
+      res.send(result);
+    }
+  });
+});
+
+app.put("/assign", (req, res) => {
+  const NID = req.body.NID;
+  const doseOneDate = req.body.doseOneDate;
   db.query(
-    "select exists(select * from register where NID = ? and phone =?)", [NID, phone],
+    "UPDATE register SET doseOneDate = ?, doseTwoDate = date_add(doseOneDate, interval 30 day)  WHERE NID = ?",
+    [doseOneDate,NID],
     (err, result) => {
       if (err) {
-        res.send(err);
-      } else{
+        console.log(err);
+      } else {
         res.send(result);
       }
     }

@@ -8,6 +8,7 @@ import Status from './pages/status/status';
 import Home from './pages/home/home';
 import ApplicantList from './admin/applicantList';
 import ApplicantReq from './admin/applicantReq';
+import AdminLogin from './admin/adminLogin';
 import { useEffect, useState } from 'react';
 
 function App() {
@@ -39,6 +40,7 @@ function App() {
       <Route exact path="/covidProtection" component={CovidProtection}/>
       <Route exact path="/status" component={() => <Status loginStat={loginStat}/>}/>
       <Route exact path="/register" component={() => <Register loginStat={loginStat}/>}/>
+      <Route exact path="/adminLogin" component={AdminLogin}/>
       <Route exact path="/applicantList" component={ApplicantList}/>
       <Route exact path="/applicantReq" component={ApplicantReq}/>
       </Switch>

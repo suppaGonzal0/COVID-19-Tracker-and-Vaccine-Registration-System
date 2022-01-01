@@ -148,6 +148,24 @@ app.put("/assign", (req, res) => {
   );
 });
 
+app.post("/admin", (req, res) => {
+
+  const {email, password} = req.body;
+
+  db.query(
+    "select * from admin where email = ? and password =?", [email, password],
+    (err, result) => {
+      if (err) {
+        res.send(err);
+      } else if(result.length>0){
+        res.send(result);
+      }else {
+        res.send({message : "Email/Password mismatch!"});
+      }
+    }
+  );
+});
+
 const port= 3001;
 
 app.listen(port, () => {

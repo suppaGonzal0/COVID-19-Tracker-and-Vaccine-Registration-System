@@ -1,0 +1,64 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+.navContainer{
+    display: flex;
+    height: 60px;   
+    background-color: #AAB8C4;
+    border-style: solid;
+    border-width: 10px;
+    border: #3B4553; 
+}
+
+.logo{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
+}
+.navLinksContainer{
+    display: flex;
+    flex: 5;
+    align-items: center;
+    justify-content: center;
+}
+
+.navLinks{
+    display: flex;
+    width: 100%;
+    justify-content: space-evenly;
+}
+.navLink{
+    text-decoration: none;
+}
+
+.navLink:visited{
+    color: black;
+}
+.registerArea{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
+    background-color: #3B4553;
+}
+
+.registerContainer{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 80%;
+    height: 100%;
+    transition: all 0.3s ease;
+    text-decoration: none;
+}
+
+.registerContainer:visited{
+    color: white;
+}
+
+.registerContainer:hover {
+    width: 90%;
+}
+

@@ -10,15 +10,11 @@ import ApplicantList from './admin/applicantList';
 import ApplicantReq from './admin/applicantReq';
 import AdminLogin from './admin/adminLogin';
 import { useEffect, useState } from 'react';
+import Navbar from './components/navbar/Navbar';
 
 function App() {
 
   const [loginStat, setLoginStat] = useState(false);
-  const logout = () => {
-    localStorage.removeItem("loginStat");
-    localStorage.removeItem("loginCred");
-    setLoginStat(false);
-  }
 
   useEffect(() => {
     if((localStorage.getItem("loginStat")) === "yes"){
@@ -33,10 +29,11 @@ function App() {
 
   return (
     <Router>
+      <Navbar loginStat={loginStat} setLoginStat={setLoginStat}/>
       <Switch>
       <Route exact path="/contact" component={Contact}/>
       <Route exact path="/" component={() => <Home loginStat={loginStat}/>}/>
-      <Route exact path="/login" component={Login}/>
+      <Route exact path="/login" component={() => <Login setLoginStat={setLoginStat}/>}/>
       <Route exact path="/covidProtection" component={CovidProtection}/>
       <Route exact path="/status" component={() => <Status loginStat={loginStat}/>}/>
       <Route exact path="/register" component={() => <Register loginStat={loginStat}/>}/>
@@ -44,7 +41,7 @@ function App() {
       <Route exact path="/applicantList" component={ApplicantList}/>
       <Route exact path="/applicantReq" component={ApplicantReq}/>
       </Switch>
-      <button onClick={logout}>Logout</button>
+      {/* <button onClick={logout}>Logout</button> */}
     </Router>
   );
 }

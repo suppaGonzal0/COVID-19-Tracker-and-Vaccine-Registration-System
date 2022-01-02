@@ -2,8 +2,9 @@ import React from 'react'
 import Axios from 'axios'
 import { useState } from 'react';
 import firebase from '../../firebase';
+import "./login.css"
 
-export default function Login() {
+export default function Login({ loginStat, setLoginStat }) {
 
     const [NID, setNID] = useState();
     const [phone, setPhone] = useState();
@@ -26,40 +27,57 @@ export default function Login() {
                     if (code == null) return;
                     ex.confirm(code).then(function (result) {
                         localStorage.setItem("loginStat", "yes");
+                        setLoginStat(true);
                         localStorage.setItem("loginCred", JSON.stringify(response.data[0]));
                         console.log(response.data[0]);
-                        window.location.pathname = "/status"
+                        window.location.pathname = "/register"
                     }).catch((error) => {
                         console.log(error);
                     })
                 })
             }
         });
-
-
     };
-    return (
-        <>
-            <h1>Login</h1>
-            <form onSubmit={login}>
-                <div className="field">
-                    <label>NID</label>
-                    <input type="text"
-                        onChange={(e) => {
-                            setNID(e.target.value);
-                        }} />
-                </div>
 
-                <div className="field">
-                    <label>Phone</label>
-                    <input type="text"
-                        onChange={(e) => {
-                            setPhone(e.target.value);
-                        }} />
+    const tryAgain = () => {
+        window.location.reload(false)
+    }
+
+    if (!loginStat) {
+        return (
+            <div className='loginCard'>
+                <div className='loginBox'>
+                    <h2 >Login</h2>
+                    <form onSubmit={login} className='loginForm'>
+                        <div className="loginField">
+                            <label>NID</label>
+                            <input className='loginInp' type="text"
+                                onChange={(e) => {
+                                    setNID(e.target.value);
+                                }} />
+                        </div>
+
+                        <div className="loginField">
+                            <label>Phone</label>
+                            <input className='loginInp' type="text"
+                                onChange={(e) => {
+                                    setPhone(e.target.value);
+                                }} />
+                        </div>
+                        <div className="loginErr">
+                            <h3 className="alert" id="recaptcha">{loginErr}</h3>
+                            {loginErr ? <button className="errBtn" onClick={tryAgain}>  Try Again?</button> : null}
+                        </div>
+                        <input type="submit" value="Login" className='loginButton' />
+                    </form>
                 </div>
-                <h3 className="alert" id="recaptcha">{loginErr}</h3>
-                <input type="submit" value="Login" />
-            </form>
-        </>
-    )
+            </div>
+        )
+    }
+    else {
+        return (
+            window.location.pathname = "/"
+        )
+    }
+
 }

@@ -16,15 +16,18 @@ export default function Contact(){
   };
 
   return (
-    <>
-      <form onSubmit={sendEmail} className="form">
+    <div className='contactContainer'>
+      <div className='contactImgBox'>
+        <img src="contact.png" alt="" className='contactImg'/>
+      </div>
+      <form onSubmit={sendEmail} className="contactForm">
 
-        <p>Submit Your Ticket </p>
+        <h2 className="contactH2">Submit Your Ticket </h2>
 
-        <div className="field">
-          <label for="subject">Subject</label>
+        <div className="contactField">
+          <label className='contactLabel'>Subject</label>
           <select name="subject" className="subject">
-            <option value="" selected hidden></option>
+            <option defaultValue hidden></option>            
             <option>Seeking help from Medical Experts</option>
             <option>Inquiry regarding vaccination</option>
             <option>Facing technical issues</option>
@@ -32,24 +35,25 @@ export default function Contact(){
           </select>        
         </div>
 
-        <div className="field">
-          <label for="name">Name</label>
+        <div className="contactField">
+          <label className='contactLabel'>Name</label>
           <input type="text" className="name"/>
         </div>
 
-        <div className="field">
-          <label for="email">E-mail</label>
+        <div className="contactField">
+          <label className='contactLabel'>E-mail</label>
           <input type="text" className="email"/>
         </div>
 
-        <div className="field">
-          <label for="msg">Message</label>
+        <div className="contactField">
+          <label className='contactLabel'>Message</label>
           <textarea className="msg"/>
         </div>
 
-        <input type="submit" id="button" value="Send Email"/>
+        <input type="submit" className="contactButton" value="Send Email"/>
 
         </form>
-    </>
+        
+    </div>
   );
 };

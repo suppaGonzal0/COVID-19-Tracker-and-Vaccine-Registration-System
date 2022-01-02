@@ -1,0 +1,72 @@
+.contactContainer{
+    display: flex;
+    background: linear-gradient(to right, rgb(255, 255, 255) 50%, #3B4553 50%);
+    height: calc(100vh - 60px);
+}
+
+.contactForm{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 5%;
+    flex: 1;
+}
+
+.contactH2{
+    margin-bottom: 3%;
+    color: #AAB8C4
+}
+
+.contactField{
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+}
+
+.contactButton{
+    margin-top: 1.5%;
+    width: 180px;
+    background-color:#AAB8C4;
+    border: none;
+    outline: none;
+    height: 49px;
+    border-radius: 15px;
+    color: #3B4553;
+    font-weight: 750;
+    cursor: pointer;
+    transition: 0.5s;
+    font-size: medium;
+}
+
+.subject, .name, .email{
+    margin-top: 1.5%;
+    margin-bottom: 8%;
+    width: 300px;
+    height: 35px;
+    border-radius: 10px;
+    background-color: #ECF1FC;
+}
+
+.msg{
+    margin-top: 1%;
+    margin-bottom: 8%;
+    width: 300px;
+    height: 150px;
+    border-radius: 15px;
+    background-color: #ECF1FC;
+}
+
+.contactImgBox{
+    flex: 1;
+}
+
+.contactImg{
+    margin-left: 20%;
+    margin-top: 10%;
+    height: 500px;
+    width: 500px;
+}
+
+.contactLabel{
+    color: white
+}

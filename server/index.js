@@ -160,11 +160,42 @@ app.post("/admin", (req, res) => {
       } else if(result.length>0){
         res.send(result);
       }else {
-        res.send({message : "Email/Password mismatch!"});
+        res.send({message : "Credentials mismatch!"});
       }
     }
   );
 });
+
+app.put("/markDoseOne", (req, res) => {
+  const NID = req.body.NID;
+  db.query(
+    "UPDATE register SET doseOne = true WHERE NID = ?",
+    [NID],
+    (err, result) => {
+      if (err) {
+        console.log(err);
+      } else {
+        res.send(result);
+      }
+    }
+  );
+});
+
+app.put("/markDoseTwo", (req, res) => {
+  const NID = req.body.NID;
+  db.query(
+    "UPDATE register SET doseTwo = true WHERE NID = ?",
+    [NID],
+    (err, result) => {
+      if (err) {
+        console.log(err);
+      } else {
+        res.send(result);
+      }
+    }
+  );
+});
+
 
 const port= 3001;
 

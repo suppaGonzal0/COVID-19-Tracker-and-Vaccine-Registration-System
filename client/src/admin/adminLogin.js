@@ -19,32 +19,42 @@ export default function AdminLogin() {
             } else {
                 localStorage.setItem("admin", "verified");
                 console.log(response);
-                window.location.pathname="/applicantList"
+                window.location.pathname = "/applicantList"
             }
         });
     };
-    return (
-        <>
-            <h1>Admin Login</h1>
-            <form onSubmit={adminLogin}>
-                <div className="field">
-                    <label>Email</label>
-                    <input type="text"
-                        onChange={(e) => {
-                            setEmail(e.target.value);
-                        }} />
-                </div>
 
-                <div className="field">
-                    <label>Password</label>
-                    <input type="password"
-                        onChange={(e) => {
-                            setPassword(e.target.value);
-                        }} />
-                </div>
-                <h3 className="alert">{loginErr}</h3>
-                <input type="submit" value="Login" />
-            </form>
-        </>
+    const tryAgain = () => {
+        window.location.reload(false)
+    }
+
+    return (
+        <div className='loginCard'>
+            <div className='loginBox'>
+                <h2 className='loginH'>Admin Login</h2>
+                <form className='loginForm' onSubmit={adminLogin}>
+                    <div className="loginField">
+                        <label>Email</label>
+                        <input className='loginInp' type="text"
+                            onChange={(e) => {
+                                setEmail(e.target.value);
+                            }} />
+                    </div>
+
+                    <div className="loginField">
+                        <label>Password</label>
+                        <input className='loginInp' type="password"
+                            onChange={(e) => {
+                                setPassword(e.target.value);
+                            }} />
+                    </div>
+                    <div className="loginErr">
+                        <h3 className="alert">{loginErr}</h3>
+                        {loginErr ? <button className="errBtn" onClick={tryAgain}>  Try Again?</button> : null}
+                    </div>
+                    <input type="submit" value="Login" className='loginButton' />
+                </form>
+            </div>
+        </div>
     )
 }

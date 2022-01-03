@@ -24,7 +24,18 @@ h1{
     font-size: 50px;
 }
 
-p {
+p{
     font-family: "Inter", sans-serif;
     font-weight: 400;
+}
+
+label, select, input, textarea{
+    font-family: "Inter", sans-serif;
+    font-weight: 400;
+    font-size: 15px;
+    border-style: none;
+}
+
+label{
+    font-weight: 500;
 }

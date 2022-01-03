@@ -26,6 +26,7 @@
     width: 250px;
     margin-top: 1.5%;
     background-color: #ECF1FC;
+    padding-left: 10px;
 }
 
 .loginButton{
@@ -41,6 +42,12 @@
     cursor: pointer;
     transition: 0.5s;
     font-size: medium;
+}
+
+.loginButton:hover{
+    background-color: #637286;
+    color: #fff;
+    transition: 0.3s all ease;
 }
 
 .loginErr{

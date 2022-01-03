@@ -23,7 +23,7 @@ export default function Login({ loginStat, setLoginStat }) {
                 let recaptcha = new firebase.auth.RecaptchaVerifier('recaptcha');
                 let number = phone;
                 firebase.auth().signInWithPhoneNumber(number, recaptcha).then(function (ex) {
-                    let code = prompt('enter the otp', '');
+                    let code = prompt('Enter the OTP', '');
                     if (code == null) return;
                     ex.confirm(code).then(function (result) {
                         localStorage.setItem("loginStat", "yes");

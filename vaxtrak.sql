@@ -30,8 +30,9 @@ create table admin(
 select * from citizen;
 select * from register;
 select * from admin;
-select * from register where doseOneDate is not null and doseTwoDate is not null;
-update register set doseOne=true, doseTwo=null where NID = 234;
+SELECT * FROM register where doseOne=true and doseTwo is null;
+update register set doseOneDate=null and doseTwoDate=null where NID = 345;
+select * from admin where email = '321312' and pass = '312';
 
 insert into admin (email, password) 
 values ('aothoi@gmail.com', 'pass'), 

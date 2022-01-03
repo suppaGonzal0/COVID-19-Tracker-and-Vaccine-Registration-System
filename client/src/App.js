@@ -9,8 +9,9 @@ import Home from './pages/home/home';
 import ApplicantList from './admin/applicantList';
 import ApplicantReq from './admin/applicantReq';
 import AdminLogin from './admin/adminLogin';
+import Navbar from './components/navbar/navbar';
+import AboutUs from './pages/aboutUs/aboutUs';
 import { useEffect, useState } from 'react';
-import Navbar from './components/navbar/Navbar';
 
 function App() {
 
@@ -33,8 +34,9 @@ function App() {
       <Switch>
       <Route exact path="/contact" component={Contact}/>
       <Route exact path="/" component={() => <Home loginStat={loginStat}/>}/>
-      <Route exact path="/login" component={() => <Login setLoginStat={setLoginStat}/>}/>
+      <Route exact path="/login" component={() => <Login setLoginStat={setLoginStat} loginStat={loginStat}/>}/>
       <Route exact path="/covidProtection" component={CovidProtection}/>
+      <Route exact path="/about" component={AboutUs}/>
       <Route exact path="/status" component={() => <Status loginStat={loginStat}/>}/>
       <Route exact path="/register" component={() => <Register loginStat={loginStat}/>}/>
       <Route exact path="/adminLogin" component={AdminLogin}/>

@@ -38,6 +38,12 @@
     font-size: medium;
 }
 
+.contactButton:hover{
+    background-color: #637286;
+    color: #fff;
+    transition: 0.3s all ease;
+}
+
 .subject, .name, .email{
     margin-top: 1.5%;
     margin-bottom: 8%;
@@ -45,6 +51,7 @@
     height: 35px;
     border-radius: 10px;
     background-color: #ECF1FC;
+    padding-left: 10px;
 }
 
 .msg{
@@ -54,6 +61,8 @@
     height: 150px;
     border-radius: 15px;
     background-color: #ECF1FC;
+    padding: 10px;
+    resize: none;
 }
 
 .contactImgBox{

@@ -59,14 +59,9 @@ export default function Home({loginStat}) {
                 }
                 {countrySelected ? <h3>{`Total Infected: ${country[countryID].TotalConfirmed}`}</h3> : 
                     null
-                }
-
-
+                }   
                 
-                
-                
-            </div>
-            
+            </div>        
 
         </div>
     )

@@ -20,6 +20,12 @@
     margin-top: 10%;
 }
 
+.gotoBtn:hover{
+    background-color: #637286;
+    color: #fff;
+    transition: 0.3s all ease;
+}
+
 .statusContainer{
     display: flex;
     flex-direction: column;

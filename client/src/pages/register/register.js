@@ -1,5 +1,6 @@
 import React from 'react'
 import Axios from 'axios'
+import "./register.css"
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
@@ -33,6 +34,7 @@ export default function Register({ loginStat }) {
                 console.log(response.data.message);
             }
             else {
+                window.location.pathname="/status"
                 console.log(response.data);
             }
         });
@@ -59,98 +61,101 @@ export default function Register({ loginStat }) {
 
         const getInfo = localStorage.getItem("loginCred");
         setInfo(JSON.parse(getInfo));
-    
+
     }, []);
 
     if (!loginStat) {
         return (
-            <>
+            <div className='goto'>
                 <h2>You are not logged in</h2>
-                <Link to="/login"><button>Go to login</button></Link>
-            </>
+                <Link to="/login"><button className='gotoBtn'>Go to login</button></Link>
+            </div>
         )
     } else {
         if (regStat) {
             return (
-                <>
+                <div className='goto'>
                     <h2>You are already registered</h2>
-                    <Link to="/status"><button>Check Vaccine Status</button></Link>
-                </>
+                    <Link to="/status"><button className='gotoBtn'>Check Vaccine Status</button></Link>
+                </div>
             )
         }
         else {
             return (
-                <form onSubmit={register} className='regForm'>
-                    <h1>Register For Vaccine</h1>
-                    <div className="field">
-                        <label>Name</label>
-                        <input type="text"
-                            onChange={(e) => {
-                                setName(e.target.value);
-                            }} />
-                    </div>
+                <div className="loginCard">
+                    <div className="regBox">
+                        <h1>Register For Vaccine</h1>
+                        <form onSubmit={register} className='loginForm'>
+                            <div className="loginField">
+                                <label>Name</label>
+                                <input type="text" className='loginInp'
+                                    onChange={(e) => {
+                                        setName(e.target.value);
+                                    }} />
+                            </div>
 
-                    <div className="field">
-                        <label>NID</label>
-                        <input type="text"
-                            onChange={(e) => {
-                                setNID(e.target.value);
-                            }} />
-                    </div>
+                            <div className="loginField">
+                                <label>NID</label>
+                                <input type="text" className='loginInp'
+                                    onChange={(e) => {
+                                        setNID(e.target.value);
+                                    }} />
+                            </div>
 
-                    <div className="field">
-                        <label>Date of Birth</label>
-                        <input type="date" max="2010-01-01"
-                            onChange={(e) => {
-                                setBirth(e.target.value);
-                            }} />
-                    </div>
+                            <div className="loginField">
+                                <label>Date of Birth</label>
+                                <input type="date" max="2010-01-01" className='loginInp'
+                                    onChange={(e) => {
+                                        setBirth(e.target.value);
+                                    }} />
+                            </div>
 
-                    <div className="field">
-                        <label>Phone</label>
-                        <input type="text"
-                            onChange={(e) => {
-                                setPhone(e.target.value);
-                            }} />
-                    </div>
+                            <div className="loginField">
+                                <label>Phone</label>
+                                <input type="text" className='loginInp'
+                                    onChange={(e) => {
+                                        setPhone(e.target.value);
+                                    }} />
+                            </div>
 
-                    <div className="field">
-                        <label>Gender</label>
-                        <input type="radio" name="gender" value="Male"
-                            onChange={(e) => {
+                            <div className="loginField" onChange={(e) => {
                                 setGender(e.target.value);
-                            }} />Male
-                        <input type="radio" name="gender" value="Female"
-                            onChange={(e) => {
-                                setGender(e.target.value);
-                            }} />Female
+                            }}>
+                                <label>Gender</label>
+                                <select className='loginInp'>
+                                    <option defaultValue hidden>Choose your gender</option>
+                                    <option>Male</option>
+                                    <option>Female</option>
+                                </select>
+                            </div>
+
+                            <div className="loginField" onChange={(e) => {
+                                setCenter(e.target.value);
+                            }}>
+                                <label>Center</label>
+                                <select className='loginInp'>
+                                    <option defaultValue hidden>Choose a center</option>
+                                    <option>abc</option>
+                                    <option>def</option>
+                                    <option>ghi</option>
+                                    <option>jkl</option>
+                                </select>
+                            </div>
+
+                            <div className="loginField">
+                                <label>Address</label>
+                                <input type="text" className='loginInp'
+                                    onChange={(e) => {
+                                        setAddress(e.target.value);
+                                    }} />
+                            </div>
+
+                            <input className='loginButton' type="submit" value="Register" />
+
+                        </form>
                     </div>
-
-                    <div className="field" onChange={(e) => {
-                        setCenter(e.target.value);
-                    }}>
-                        <label>Center</label>
-                        <select>
-                            <option defaultValue hidden>Choose a center</option>
-                            <option>abc</option>
-                            <option>def</option>
-                            <option>ghi</option>
-                            <option>jkl</option>
-                        </select>
-                    </div>
-
-                    <div className="field">
-                        <label>Address</label>
-                        <input type="text"
-                            onChange={(e) => {
-                                setAddress(e.target.value);
-                            }} />
-                    </div>
-
-                    <input type="submit" value="Register" />
-
-                </form>
-    )
+                </div>
+            )
         }
     }
 

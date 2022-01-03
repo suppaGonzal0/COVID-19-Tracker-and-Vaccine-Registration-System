@@ -28,17 +28,25 @@ export default function ApplicantReq() {
     }
 
     return (
-        <div>
-            <h1>Applicant Request Page</h1>
+        <div className='applicantContainer'>
+            <h1 className='appListH'>Applicant Request Page</h1>
+            <div className="listHead">
+                    <div className="itemHead">NID</div>
+                    <div className="itemHead">NAME</div>
+                    <div className="itemHead">BIRTHDATE</div>
+                    <div className="itemHead">PHONE</div>
+                    <div className="itemHead">ASSIGN DATE</div>
+                    <div className="itemHead">CONFIRM</div>
+            </div>
            {applicants.filter(applicant => applicant.doseOneDate===null).map( (applicant, idx) => (
-                <ul key={idx} className="appList">
-                <li className="item">{applicant.NID}</li>
-                <li className="item">{applicant.name}</li>
-                <li className="item">{applicant.birth.split("T")[0]}</li>
-                <li className="item">{applicant.phone}</li>   
-                <li><input type="date" onChange={(e) => {setDoseOneDate(e.target.value)}} /></li>
-                <button onClick={()=>assign(applicant.NID)}>Assign</button>         
-                </ul>
+                <div key={idx} className="appList">
+                <div className="item">{applicant.NID}</div>
+                <div className="item">{applicant.name}</div>
+                <div className="item">{applicant.birth.split("T")[0]}</div>
+                <div className="item">{applicant.phone}</div>   
+                <div className="item"><input className='dateField' type="date" onChange={(e) => {setDoseOneDate(e.target.value)}} /></div>
+                <div className="item"><button className='doneBtn' onClick={()=>assign(applicant.NID)}>Assign</button> </div>        
+                </div>
             ))}
         </div>
     )
